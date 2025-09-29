@@ -15,15 +15,16 @@
         "text": "step2.md"
       }
     ],
-    "final":{
-      "text": "final.md"
+    "finish": {
+      "text": "finish.md"
     }
   },
+  "hosts": ["host01"],
   "assets": {
-      "host01": [
-          {"file": "openbao.py", "target": "/root"},
-          {"file": "plaintext.py", "target": "/root"}
-        ]
+    "host01": [
+      {"file": "openbao.py", "target": "/home/kc-user/"},
+      {"file": "plaintext.py", "target": "/home/kc-user/"}
+    ]
   },
   "backend": {
     "imageid": "ubuntu"
