@@ -2,6 +2,12 @@
   "title": "Scenario ONE",
   "description": "This is the description of scenario TWO",
   "details": {
+      "assets": {
+      "host01": [
+          {"file": "openbao.py", "target": "~/", "chmod": "+wx"},
+          {"file": "plaintext.py", "target": "~/", "chmod": "+wx"}
+        ]
+    },
     "intro": {
       "text": "intro.md"
     },
@@ -10,7 +16,7 @@
         "text": "step1.md"
       },
       {
-        "text":"step2.md"
+        "text": "step2.md"
       }
     ]
   },
