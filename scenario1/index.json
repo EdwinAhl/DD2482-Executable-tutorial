@@ -1,6 +1,6 @@
 {
   "title": "Storing secrets locally using OpenBao",
-  "description": "Upload files as assets to a specific location",
+  "description": "Learn how to store secret safely and locally using OpenBao",
   "details": {
     "intro": {
       "text": "intro.md"
