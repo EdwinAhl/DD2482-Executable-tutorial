@@ -1,7 +1,20 @@
 import mysql.connector
+import requests
+
+OPENBAO_URL = "http://127.0.0.1:8200" 
+MOUNT = "secret"
+SECRET_PATH = "foo"
+FIELD = "pswd"
+TOKEN = "root"
 
 def get_secret():
-    return "S3cret"
+    headers = {"X-Vault-Token": TOKEN}
+    url = f"{OPENBAO_URL}/v1/{MOUNT}/data/{SECRET_PATH}"
+    resp = requests.get(url, headers=headers)
+    resp.raise_for_status()
+    data = resp.json()
+    return data["data"]["data"][FIELD]
+
 
 def connect_to_db():
     return mysql.connector.connect(
@@ -12,7 +25,7 @@ def connect_to_db():
     )
 
 def main():
-    print("Getting users using plaintext password ...")
+    print("Getting users using OpenBao ...")
     conn = connect_to_db()
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM users;")
@@ -22,6 +35,6 @@ def main():
         print(r)
     cursor.close()
     conn.close()
-    
+   
 if __name__ == "__main__":
-    main()    
+    main()   
