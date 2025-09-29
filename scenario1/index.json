@@ -1,13 +1,23 @@
 {
-  "title": "Upload Assets",
+  "title": "Storing secrets locally using OpenBao",
   "description": "Upload files as assets to a specific location",
   "details": {
+    "intro": {
+      "text": "intro.md"
+    },
     "steps": [
       {
-        "title": "Exec the uploaded script",
+        "title": "",
         "text": "step1.md"
+      },
+      {
+        "title": "",
+        "text": "step2.md"
       }
     ],
+    "finish": {
+      "text": "finish.md"
+    },
     "assets": {
       "host01": [
         {"file": "openbao.py", "target": "~/", "chmod": "+w"},
