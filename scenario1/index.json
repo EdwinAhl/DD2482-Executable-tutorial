@@ -21,7 +21,8 @@
     "assets": {
       "host01": [
         {"file": "openbao.py", "target": "~/", "chmod": "+w"},
-        {"file": "plaintext.py", "target": "~/", "chmod": "+w"}
+        {"file": "plaintext.py", "target": "~/", "chmod": "+w"},
+	{"file": "db.sql", "target": "~/", "chmod": "+w"}
       ]
     }
   },
