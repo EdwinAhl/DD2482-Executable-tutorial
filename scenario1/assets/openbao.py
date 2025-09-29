@@ -5,7 +5,7 @@ OPENBAO_URL = "http://127.0.0.1:8200"
 MOUNT = "secret"
 SECRET_PATH = "foo"
 FIELD = "pswd"
-TOKEN = "root"
+TOKEN = input("Token: ")
 
 def get_secret():
     headers = {"X-Vault-Token": TOKEN}
