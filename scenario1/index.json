@@ -7,17 +7,22 @@
     },
     "steps": [
       {
+        "title": "",
         "text": "step1.md"
       },
       {
+        "title": "",
         "text": "step2.md"
       }
-    ]
+    ],
+    "final":{
+      "text": "final.md"
+    }
   },
   "assets": {
       "host01": [
-          {"file": "openbao.py", "target": "~/"},
-          {"file": "plaintext.py", "target": "~/"}
+          {"file": "openbao.py", "target": "/root"},
+          {"file": "plaintext.py", "target": "/root"}
         ]
   },
   "backend": {
