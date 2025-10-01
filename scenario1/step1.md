@@ -1,12 +1,12 @@
-# A naive solution
+# An insecure solution
 ## Setup Database
 To start, we need to setup a secure database. The command below creates a mysql docker container secured by the username `root` and password `S3cret`.
 ```plain
-sudo docker run -d --name demo-db -e MYSQL_ROOT_PASSWORD=S3cret -p 3306:3306 mysql:8
+sudo docker run -d --name demo-db -e MYSQL_ROOT_PASSWORD=S3cret -p 3306:3306 mysql:8; sleep 10
 ```{{exec}}
 
 **IMPORTANT: Wait at least 10-15 seconds between running the command above and below!**
-Otherwise it will generate an error and you will have to do it again.
+Otherwise the command below will generate an error and you will have to run it again, that is why we have a `sleep 10` at the end of the first command.
 
 Now that we have a container running mysql, we can import a pre-made database from *db.sql*: 
 ```plain

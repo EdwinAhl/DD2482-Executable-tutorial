@@ -29,9 +29,15 @@ This command will:
 - Authenticate you as root and give you permissions as root by supplying the token "root" to the server for running commands with highest privileges.a
 - Sets a environment variable
 
+## Let's safely store our MySQL password
+```bash
+sudo docker exec -it openbao bao kv put -mount=secret foo pswd=S3cret
+```{{exec}}
+
+## Create a token for reading the contents of this folder 
 What we will do next is create a token that only allows reading a folder in OpenBao's Key-Value database called "secret"
 
-To do this we have to make a policy that we then apply to the token. And this will be our policy, this is kept in PolicyForPythonToken.hcl:
+To do this we have to make a policy that we then apply to the token. And this will be our policy, which is kept in PolicyForPythonToken.hcl:
 
 ```hcl
 # Allow reading secrets under "secret/"
@@ -55,7 +61,7 @@ You are almost there! The final step is to now create the token using this newly
 sudo docker exec -it openbao bao token create -policy="python-program" -ttl=1h -explicit-max-ttl=24h
 ```{{exec}}
 
-Ok, now you should see lots of information, but for now, copy the text after "Token: "
+Ok, now you should see lots of information, but for now, copy the text after "token: "
 
 
 ## Updating the Python program to use OpenBao
@@ -82,6 +88,6 @@ Now we can verify this by running:
 python openbao.py
 ```{{exec}}
 
-And inputting the token: `{TODO}`
+And inputting the value for `token` from the previous commmand...
 
 We get the same result as before! Yippie!

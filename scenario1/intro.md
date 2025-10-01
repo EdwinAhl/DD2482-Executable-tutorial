@@ -5,12 +5,36 @@ Production environments require more attention in the early stages of architectu
 ## Tutorial Overview
 In this tutroial, we will first introduce an insecure example of using plaintext or hardcoded secrets in a Python program. This would show a fast solution, but not a long time secure solution.
 
-Then, we continue with showing how these secrets can be exchanged with a secure solution that controls the storage of secrets, OpenBao. First showing
+Then, we continue with showing how these secrets can be exchanged with a secure solution that controls the storage of secrets, OpenBao. 
 
 OpenBao is a fork of HashiCrop Vault that provides the secure storage. Here, OpenBao will be run in a docker container, and commands will be sent to the container in order to communicate with it.
+
+```
+              Start
+                |
+      +---------v------------+ : Motivation and Background
+      |        Intro         | : Tutorial Overview
+      +----------------------+ : ILO
+                |
+      +---------v------------+ : Setup database
+      | An insecure solution | : Setup Python Virtual environment
+      +----------------------+ : Connec to DB using plaintext python
+                |
+      +---------v------------+ : Setup OpenBao
+      |  A secure solution   | : Store Secret in OpenBao
+      +----------------------+ : Retrieve secret using python http request
+                |
+      +---------v------------+ : Summary
+      |      Summary         | : Recap
+      +----------------------+ : Take away
+                |
+                v
+               End
+ ```
 
 ## Intended Learning Outcomes
 By the end of this tutorial, you should be able to:
 - Setup a password protected database container
 - Setup an OpenBao container
-- Store and retrieve secrets from the OpenBao container
+- Store secrets in the OpenBao container
+- Retrieve the secrets using python and http requests
