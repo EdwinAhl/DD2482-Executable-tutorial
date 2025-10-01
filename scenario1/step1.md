@@ -1,3 +1,4 @@
+# A naive solution
 ## Setup Database
 To start, we need to setup a secure database. The command below creates a mysql docker container secured by the username `root` and password `S3cret`.
 ```plain
@@ -59,7 +60,7 @@ detect-secrets scan plaintext.py
 It shows a vulnerability on line 4, let's examine further:
 
 ```plain
-cat plaintext.py
+cat plaintext.py -n
 ```{{exec}}
 
 Here we can clearly see that the program connects to the mysql database by inputting in plaintext the username and password. This is outragous and must be fixed, but how?
