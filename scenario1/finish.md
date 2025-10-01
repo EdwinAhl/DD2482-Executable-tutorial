@@ -1,4 +1,4 @@
-# The End - Summary
+# The End
 This is the end of the tutorial, hope you enjoyed it!
 
 ## Recap

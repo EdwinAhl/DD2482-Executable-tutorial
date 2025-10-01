@@ -1,6 +1,6 @@
 # An insecure solution
 ## Setup Database
-To start, we need to setup a secure database. The command below creates a mysql docker container secured by the username `root` and password `S3cret`.
+To start, we need to setup a secure database. The command below creates a MySQL docker container secured by the username `root` and password `S3cret`.
 ```plain
 sudo docker run -d --name demo-db -e MYSQL_ROOT_PASSWORD=S3cret -p 3306:3306 mysql:8; sleep 15
 ```{{exec}}
@@ -9,12 +9,12 @@ This command takes a while and we need to wait at least 15 seconds between runni
 
 ![minecraft parkour gif](./assets/minecraft-tas.gif)
 
-Now that we have a container running mysql, we can import a pre-made database: 
+Now that we have a MySQL docker container running , we can import a pre-made database: 
 ```plain
 sudo docker exec -i demo-db mysql -u root -pS3cret < db.sql
 ```{{exec}}
 
-Great, now we have a database with secured data!
+Great! Now we have a database with secured data!
 
 ## Setup Python Virtual Environment
 To run a python program that connects to the database and retrieves data, we first setup a python virtual envionment to make the rest of the setup easier.
@@ -47,9 +47,9 @@ python plaintext.py
 ```{{exec}}
 
 
-## Use detect-secrets to find plaintext secrets in plaintext.py
+## Use detect-secrets to find plaintext secrets
 It works! But how? As the name might give away, the password could be written in plaintext. 
-Let's investigate this using the pip module detect-secrets:
+Let's investigate this using the pip module `detect-secrets`:
 ```plain
 pip install detect-secrets
 ```{{exec}}

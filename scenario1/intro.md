@@ -4,15 +4,15 @@ In terms of DevSecOps, security must be managed by the team developing the produ
 
 ## Background
 This tutorial will mainly utilize OpenBao, which is a fork of HashiCrop Vault that provides a powerful secrets and encryption management server to store secrets such as passwords, encryption keys, and certificates. 
-OpenBao utilizes an intersting concept know as Shamir Secret Sharing, this is a cryptographic algorithm that splits a secret into multiple parts, this means mutliple persons holds the "unseal" key used to make OpenBao accessible. "Unseal" in this context means essentially that OpenBao is in a working state and secrets can be retreived. Interesting to continue explore, but that will not be the purpose of this tutorial. With this in mind, we will use dev mode where only one key is required. To communicate with the server, it can be through a UI, a CLI, or by sending http api requests directly to the server which we will do in this tutorial.
+OpenBao utilizes an intersting concept know as Shamir Secret Sharing which is a cryptographic algorithm that splits a secret into multiple parts, this means mutliple people holds the "unseal" key used to make OpenBao accessible. Unseal means that OpenBao is in a working state and secrets can be retreived. Shamir Secret Sharing would be interesting to explore, but that will not be the purpose of this tutorial. With this in mind, we will use dev mode where only one key is required. To communicate with the OpenBao server, HTTP request are sent through a UI, a CLI, or requests directly to the server which we will do in this tutorial.
 
 ![openbao](./assets/openbao.png)
 
 
 ## Tutorial Overview
-In this tutroial, we will first introduce an insecure example of using plaintext or hardcoded secrets in a Python program. This would show a quick solution, but not a long time secure solution.
+In this tutroial, we will first introduce an insecure example of using plaintext or hardcoded secrets in a Python program. This would show a quick solution, but it is not long time secure.
 
-Then, we continue with showing how these secrets can be exchanged with a secure solution that controls the storage of secrets, using OpenBao. Here, OpenBao will be run in a docker container, and commands will be sent to the container in order to communicate with it.
+Then, we continue with showing how these secrets can be exchanged with a secure solution that controls the storage of secrets, using OpenBao. Here, OpenBao will be run in a docker container, and commands will be sent to this container in order to communicate with it.
 
 ```
         Start
@@ -39,8 +39,8 @@ Then, we continue with showing how these secrets can be exchanged with a secure 
 
 ## Intended Learning Outcomes
 By the end of this tutorial, you should be able to:
-- Setup a password protected mysql database container
+- Setup a password-protected MySQL database container
 - Understand how OpenBao and tokens works
 - Setup your own OpenBao container that uses special policies and tokens to store a secret
-- Retrieve a secret from OpenBao using its HTTP api
+- Retrieve a secret from OpenBao using its HTTP API
 - Explain one good and one bad practice of storing secrets locally 
