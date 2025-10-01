@@ -1,7 +1,8 @@
 import mysql.connector
 
 def get_secret():
-    return "S3cret"
+    password = "S3cret"
+    return password
 
 def connect_to_db():
     return mysql.connector.connect(

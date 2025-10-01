@@ -1,5 +1,5 @@
 ## Setup Database
-To start, we need to setup a secure database. The command below creates a mysql docker container secured by the username *root* and password *S3cret*.
+To start, we need to setup a secure database. The command below creates a mysql docker container secured by the username `root` and password `S3cret`.
 ```plain
 sudo docker run -d --name demo-db -e MYSQL_ROOT_PASSWORD=S3cret -p 3306:3306 mysql:8
 ```{{exec}}
@@ -56,7 +56,7 @@ pip install detect-secrets
 detect-secrets scan plaintext.py
 ```{{exec}}
 
-It shows a vulnerability on line X, let's examine further:
+It shows a vulnerability on line 4, let's examine further:
 
 ```plain
 cat plaintext.py
