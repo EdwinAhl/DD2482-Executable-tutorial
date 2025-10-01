@@ -1,6 +1,6 @@
 # A secure solution
 ## OpenBao solution
-The solution you can deploy right now, is OpenBao. OpenBao is a fork of HashiCrop Vault and you may see artifacts where "VAULT" is used instead of "BAO". One important difference to other programs is that OpenBao commuincates over HTTP requests rather then using their own protocol or the like. Therefore, we need to set the BAO_ADDR variable such that each HTTP requests reaches the server, otherwise it is only run locally (127.0.0.1), which technically also would work in this tutorial. 
+The solution you can deploy right now, is OpenBao. OpenBao is a fork of HashiCrop Vault which is why you may see artifacts where "VAULT" is used instead of "BAO". One important difference to other programs is that OpenBao commuincates over HTTP requests rather then using their own protocol. Therefore, we need to set the BAO_ADDR variable such that each HTTP requests reaches the server, otherwise it is only run locally (127.0.0.1), which technically also would work in this tutorial. 
 
 Now, we start with setting up and run the docker container for OpenBao with: 
 ```plain
