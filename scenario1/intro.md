@@ -1,13 +1,18 @@
 # Storing secrets locally using OpenBao
-## Motivation and Background
+## Motivation
 Production environments require more attention in the early stages of architecture development and recently many attempts at attacking infrastructure starts at the core. With this in mind, work cannot safely be done unless secure storage of secrets such as API-keys or any similarly sensitive information has been implemented.
 
+## Background
+This tutorial will mainly utilize OpenBao, which is a fork of HashiCrop Vault that provides a powerful secrets and encryption management server to store secrets such as passwords, encryption keys, and certificates. 
+OpenBao utilizes an intersting concept know as Shamir Secret Sharing, this is a cryptographic algorithm that splits a secret into multiple parts, this means no single person holds the "unseal" key used to make OpenBao accessible. "Unseal" in this context means essentially that OpenBao is in a working state and secrets can be retreived. Interesting to continue explore, but that will not be the purpose of this tutorial. With this in mind, we will use dev mode where only one key is required. To communicate with the server, it can be through a UI, a CLI, or by sending http api requests directly to the server which we will do in this tutorial.
+
+![openbao](./assets/openbao.png)
+
+
 ## Tutorial Overview
-In this tutroial, we will first introduce an insecure example of using plaintext or hardcoded secrets in a Python program. This would show a fast solution, but not a long time secure solution.
+In this tutroial, we will first introduce an insecure example of using plaintext or hardcoded secrets in a Python program. This would show a quick solution, but not a long time secure solution.
 
-Then, we continue with showing how these secrets can be exchanged with a secure solution that controls the storage of secrets, OpenBao. 
-
-OpenBao is a fork of HashiCrop Vault that provides the secure storage. Here, OpenBao will be run in a docker container, and commands will be sent to the container in order to communicate with it.
+Then, we continue with showing how these secrets can be exchanged with a secure solution that controls the storage of secrets, using OpenBao. Here, OpenBao will be run in a docker container, and commands will be sent to the container in order to communicate with it.
 
 ```
         Start
@@ -18,14 +23,14 @@ OpenBao is a fork of HashiCrop Vault that provides the secure storage. Here, Ope
           |
 +---------v------------+ : Setup database
 | An insecure solution | : Setup Python Virtual environment
-+----------------------+ : Connec to DB using plaintext python
++----------------------+ : Connect to DB using python
           |
 +---------v------------+ : Setup OpenBao
 |  A secure solution   | : Store Secret in OpenBao
 +----------------------+ : Retrieve secret using python http request
           |
 +---------v------------+ : Summary
-|      Summary         | : Recap
+|       Summary        | : Recap
 +----------------------+ : Take away
           |
           v
@@ -37,5 +42,5 @@ By the end of this tutorial, you should be able to:
 - Setup a password protected mysql database container
 - Understand how OpenBao and tokens works
 - Setup your own OpenBao container that uses special policies and tokens to store a secret
-- Retrieve a secret from OpenBao using its http api
+- Retrieve a secret from OpenBao using its HTTP api
 - Explain one good and one bad practice of storing secrets locally 

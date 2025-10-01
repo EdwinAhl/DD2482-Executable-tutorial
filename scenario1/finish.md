@@ -1,9 +1,13 @@
 # The End - Summary
-This is the end of the tutorial, hope you have enjoyed it!
+This is the end of the tutorial, hope you enjoyed it!
 
 ## Recap
 To recap what we have done:
-- We setup a password protected database
-- 
+- Setup a password protected database
+- Configured OpenBao and used access-tokens for services
+- Programatically access OpenBao secrets by token for easy access
 
-## Take away
+## Key take aways
+- NEVER STORE PASSWORDS IN PLAINTEXT
+- Consider using a secret and encryption management tool like OpenBao or Vault for projects
+

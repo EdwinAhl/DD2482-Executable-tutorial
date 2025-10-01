@@ -2,12 +2,12 @@
 ## Setup Database
 To start, we need to setup a secure database. The command below creates a mysql docker container secured by the username `root` and password `S3cret`.
 ```plain
-sudo docker run -d --name demo-db -e MYSQL_ROOT_PASSWORD=S3cret -p 3306:3306 mysql:8; sleep 10
+sudo docker run -d --name demo-db -e MYSQL_ROOT_PASSWORD=S3cret -p 3306:3306 mysql:8; sleep 15
 ```{{exec}}
 
-This command takes a while and we need to wait at least 10 seconds between running the command above and below, in the meanwhile, enjoy this riveting gameplay:
+This command takes a while and we need to wait at least 15 seconds between running the command above and below, in the meanwhile, enjoy this riveting gameplay:
 
-![minecraft parkour gif](/assets/minecraft-tas.gif)
+![minecraft parkour gif](./assets/minecraft-tas.gif)
 
 Now that we have a container running mysql, we can import a pre-made database: 
 ```plain

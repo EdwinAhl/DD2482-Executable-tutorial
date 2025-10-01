@@ -1,6 +1,6 @@
 # A secure solution
 ## OpenBao solution
-The solution you can deploy right now, is OpenBao. OpenBao is a fork of HashiCrop Vault and you may see artifacts where "VAULT" is used instead of "BAO". One important difference to other programs is that OpenBao commuincates over HTTP requests rather then using their own protocol or the like. Therefore, we need to set the BAO_ADDR variable such that each HTTP requests reaches the server, otherwise it is only run locally (127.0.0.1), which technically also would work in this tutorial. OpenBao is a powerful authentication server loaded with features, such as with the possability to authenticate with different vendors like GitHub or AWS. OpenBao utilizes an intersting concept know as Shamir Secret Sharing, this is a cryptographic algorithm that splits a secret into multiple parts, this means no single person holds the "unseal" key used to make OpenBao accessible (unlike in dev mode). It could be interesting to show this meachnism in action, but that will not be the purpose of this tutorial, but rather the functionality of OpenBao when unsealed.
+The solution you can deploy right now, is OpenBao. OpenBao is a fork of HashiCrop Vault and you may see artifacts where "VAULT" is used instead of "BAO". One important difference to other programs is that OpenBao commuincates over HTTP requests rather then using their own protocol or the like. Therefore, we need to set the BAO_ADDR variable such that each HTTP requests reaches the server, otherwise it is only run locally (127.0.0.1), which technically also would work in this tutorial. 
 
 Now, we start with setting up and run the docker container for OpenBao with: 
 ```plain
@@ -24,10 +24,11 @@ After the image is download and the container is running, we can start to run co
 ```bash
 sudo docker exec -it openbao bao login root
 ```{{exec}}
+NOTE!! "root" is a static token for root access and should not be used in production.
 
 This command will:
-- Authenticate you as root and give you permissions as root by supplying the token "root" to the server for running commands with highest privileges.a
-- Sets a environment variable
+- Authenticate you as root and give you permissions as root by supplying the token "root" to the server for running commands with highest privileges.
+- Sets the environment variable (inside the container) VAULT_TOKEN to "root" for simplifying future access to the OpenBao server instance with the "bao" command
 
 ## Let's safely store our MySQL password
 ```bash
@@ -44,6 +45,11 @@ path "secret/*" {
   capabilities = ["read", "list"]
 }
 ```
+
+```bash
+cat PolicyForPythonToken.hcl
+```{{exec}}
+
 The language used to specify policy is part of OpenBao's specifiaction and can be very customized for your specific needs, but here we will be satsifed with simply the above config.
 
 Let's move this policy into the container, since it is not there to begin with:
