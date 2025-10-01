@@ -1,15 +1,15 @@
 # A secure solution
 ## OpenBao solution
-The solution you can deploy right now, is OpenBao. OpenBao is a fork of HashiCrop Vault and you may see artifacts where "VAULT" is used instead of "BAO". One important difference to other programs is that OpenBao commuincates over HTTP requests rather then using their own protocol or the like. Therefore, we need to set the BAO_ADDR variable such that each HTTP requests reaches the server.
+The solution you can deploy right now, is OpenBao. OpenBao is a fork of HashiCrop Vault and you may see artifacts where "VAULT" is used instead of "BAO". One important difference to other programs is that OpenBao commuincates over HTTP requests rather then using their own protocol or the like. Therefore, we need to set the BAO_ADDR variable such that each HTTP requests reaches the server, otherwise it is only run locally (127.0.0.1), which technically also would work in this tutorial. OpenBao is a powerful authentication server loaded with features, such as with the possability to authenticate with different vendors like GitHub or AWS. OpenBao utilizes an intersting concept know as Shamir Secret Sharing, this is a cryptographic algorithm that splits a secret into multiple parts, this means no single person holds the "unseal" key used to make OpenBao accessible (unlike in dev mode). It could be interesting to show this meachnism in action, but that will not be the purpose of this tutorial, but rather the functionality of OpenBao when unsealed.
 
-Now, run the docker container with: 
+Now, we start with setting up and run the docker container for OpenBao with: 
 ```plain
 sudo docker run -d --cap-add=IPC_LOCK -p 8200:8200 --name openbao  -e BAO_ADDR=http://0.0.0.0:8200 openbao/openbao server -dev -dev-root-token-id="root"
 ```{{exec}}
 
 Let's walk through each flag of the docker command:
 - `-d` detached mode, runs the container in the background.
-- `--cap-add=IPC_LOCK` this options locks memory for certain processes, this is a safety step suggested by OpenBao. This is because container program OpenBao will run in-memory when in "dev" mode.
+- `--cap-add=IPC_LOCK` this options locks memory for certain processes, this is a safety step suggested by OpenBao. This is because container image OpenBao will run in-memory when in "dev" mode and lose data after relaunch.
 - `-p 8200:8200` exposes the openbao from the internal docker network to the external host network, which allows access to the container from host network.
 - `--name openbao` name of container.
 - `-e BAO_ADDR=http://0.0.0.0:8200` this makes the openbao commands run within the container to use this address when issueing commadns with HTTP.
@@ -38,15 +38,15 @@ sudo docker exec -it openbao bao kv put -mount=secret foo pswd=S3cret
 What we will do next is create a token that only allows reading a folder in OpenBao's Key-Value database called "secret"
 
 To do this we have to make a policy that we then apply to the token. And this will be our policy, which is kept in PolicyForPythonToken.hcl:
-
-```hcl
-# Allow reading secrets under "secret/"
+```yaml
+## Allow reading secrets under "secret/"
 path "secret/*" {
   capabilities = ["read", "list"]
 }
 ```
+The language used to specify policy is part of OpenBao's specifiaction and can be very customized for your specific needs, but here we will be satsifed with simply the above config.
 
-Let's move this policy into the container:
+Let's move this policy into the container, since it is not there to begin with:
 ```plain
 docker cp PolicyForPythonToken.hcl openbao:/root/PolicyForPythonToken.hcl
 ```{{exec}}
@@ -61,11 +61,17 @@ You are almost there! The final step is to now create the token using this newly
 sudo docker exec -it openbao bao token create -policy="python-program" -ttl=1h -explicit-max-ttl=24h
 ```{{exec}}
 
-Ok, now you should see lots of information, but for now, copy the text after "token: "
+Ok, now you should see lots of information, but for now, copy the text after "token":
+```plain
+Key                  Value
+---                  -----
+token                <copy this>
+...                  ...
+```
 
 
 ## Updating the Python program to use OpenBao
-Instead of storing the secret in plaintext, we can now use the OpenBao container that we have setup. We do this by crafting an HTTP request to the server where we authenticate by inputing an access token, and request the database password. We still use the same msql connector, but `get_secret` has beeen updated: 
+Instead of storing the secret in plaintext, we can now use the OpenBao container that we have setup. We do this by utilizing the OpenBao http api by crafting a request to the server where we authenticate by inputing the token and request the database password. We still use the same msql connector, but `get_secret` has beeen updated: 
 
 ```python
 OPENBAO_URL = "http://127.0.0.1:8200" 
@@ -83,11 +89,9 @@ def get_secret():
     return data["data"]["data"][FIELD]
 ```
 
-Now we can verify this by running:
+Now we can verify this by running the command below and inputting the value for `token` from the previous commmand:
 ```plain
 python openbao.py
 ```{{exec}}
 
-And inputting the value for `token` from the previous commmand...
-
-We get the same result as before! Yippie!
+We get the same result as before, but more secure!

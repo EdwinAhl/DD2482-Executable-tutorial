@@ -10,31 +10,32 @@ Then, we continue with showing how these secrets can be exchanged with a secure 
 OpenBao is a fork of HashiCrop Vault that provides the secure storage. Here, OpenBao will be run in a docker container, and commands will be sent to the container in order to communicate with it.
 
 ```
-              Start
-                |
-      +---------v------------+ : Motivation and Background
-      |        Intro         | : Tutorial Overview
-      +----------------------+ : ILO
-                |
-      +---------v------------+ : Setup database
-      | An insecure solution | : Setup Python Virtual environment
-      +----------------------+ : Connec to DB using plaintext python
-                |
-      +---------v------------+ : Setup OpenBao
-      |  A secure solution   | : Store Secret in OpenBao
-      +----------------------+ : Retrieve secret using python http request
-                |
-      +---------v------------+ : Summary
-      |      Summary         | : Recap
-      +----------------------+ : Take away
-                |
-                v
-               End
+        Start
+          |
++---------v------------+ : Motivation and Background
+|        Intro         | : Tutorial Overview
++----------------------+ : ILO
+          |
++---------v------------+ : Setup database
+| An insecure solution | : Setup Python Virtual environment
++----------------------+ : Connec to DB using plaintext python
+          |
++---------v------------+ : Setup OpenBao
+|  A secure solution   | : Store Secret in OpenBao
++----------------------+ : Retrieve secret using python http request
+          |
++---------v------------+ : Summary
+|      Summary         | : Recap
++----------------------+ : Take away
+          |
+          v
+         End
  ```
 
 ## Intended Learning Outcomes
 By the end of this tutorial, you should be able to:
-- Setup a password protected database container
-- Setup an OpenBao container
-- Store secrets in the OpenBao container
-- Retrieve the secrets using python and http requests
+- Setup a password protected mysql database container
+- Understand how OpenBao and tokens works
+- Setup your own OpenBao container that uses special policies and tokens to store a secret
+- Retrieve a secret from OpenBao using its http api
+- Explain one good and one bad practice of storing secrets locally 

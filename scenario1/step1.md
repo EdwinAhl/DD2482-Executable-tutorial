@@ -5,10 +5,11 @@ To start, we need to setup a secure database. The command below creates a mysql 
 sudo docker run -d --name demo-db -e MYSQL_ROOT_PASSWORD=S3cret -p 3306:3306 mysql:8; sleep 10
 ```{{exec}}
 
-**IMPORTANT: Wait at least 10-15 seconds between running the command above and below!**
-Otherwise the command below will generate an error and you will have to run it again, that is why we have a `sleep 10` at the end of the first command.
+This command takes a while and we need to wait at least 10 seconds between running the command above and below, in the meanwhile, enjoy this riveting gameplay:
 
-Now that we have a container running mysql, we can import a pre-made database from *db.sql*: 
+![minecraft parkour gif](/assets/minecraft-tas.gif)
+
+Now that we have a container running mysql, we can import a pre-made database: 
 ```plain
 sudo docker exec -i demo-db mysql -u root -pS3cret < db.sql
 ```{{exec}}
@@ -28,14 +29,14 @@ Create the environment:
 python3 -m venv venv
 ```{{exec}}
 
-And use the environment:
+Use the environment:
 ```plain
 source venv/bin/activate
 ```{{exec}}
 
 
-## Run plaintext.py to connect to database and show all users
-Before running the python program, we need mysql-connector which we use to connect to the database:  
+## Connect to the database and show all users using python
+Before running the python program, we need the pip module `mysql-connector` which we use to connect to the database:  
 ```plain
 pip install mysql-connector-python
 ```{{exec}}
@@ -63,4 +64,4 @@ It shows a vulnerability on line 4, let's examine further:
 cat plaintext.py -n
 ```{{exec}}
 
-Here we can clearly see that the program connects to the mysql database by inputting in plaintext the username and password. This is outragous and must be fixed, but how?
+Here we can clearly see that the program connects to the mysql database by inputting in plaintext the username and password. This is insecure and must be fixed, but how?
