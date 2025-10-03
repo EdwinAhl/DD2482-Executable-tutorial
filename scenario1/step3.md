@@ -32,7 +32,7 @@ sudo docker exec -it openbao bao login root
 - `-t` for a pseudo-tty which displays the result of executed command as if inside the container.
 - `openbao` this is the name of the running container that Docker recognizes (see previous command)
 - `bao` is a CLI tool used to communicate with the OpenBao instance
-- `login <token>` authenticate to OpenBao and assign an essential environment variable to <token>
+- `login <token>` authenticate to OpenBao and assign an essential environment variable to \<token\>
 - `root` token for highest privileges
 
 This command will:

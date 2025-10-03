@@ -64,7 +64,7 @@ Instead of storing the secret in plaintext, we can now use the OpenBao container
 ```python
 OPENBAO_URL = "http://127.0.0.1:8200" 
 MOUNT = "secret"
-SECRET_PATH = "foo"
+PATH = "foo"
 FIELD = "pswd"
 TOKEN = sys.argv[1]
 
@@ -76,8 +76,14 @@ def get_secret():
     data = resp.json()
     return data["data"]["data"][FIELD]
 ```
+We can check if `detect-secrets` finds anything in this file:
+```plain
+detect-secrets scan openbao.py
+```{{exec}}
 
-Now we can verify this by running the command below and authenticating using the value of `"$TOKEN"` from the previous command:
+We should get an empty result like this: `"results": {}`
+
+Now we can finally verify the OpenBao solution by running the command below, and authenticating using the value of `"$TOKEN"` from the previous command:
 ```plain
 python openbao.py "$TOKEN"
 ```{{exec}}

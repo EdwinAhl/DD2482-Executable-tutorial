@@ -12,7 +12,7 @@ sudo docker run -d --name demo-db -e MYSQL_ROOT_PASSWORD=S3cret -p 3306:3306 mys
 - `mysql:8` use the Docker image `mysql` version 8
 - `; sleep 15` after the previous command has finished, sleep for 15 seconds
 
-This command takes a while to finish and we need to wait at least 15 seconds between running the command above and below, in the meanwhile, in the meantime, enjoy this riveting gameplay:
+This command takes a while to finish and we need to wait at least 15 seconds between running the command above and below, in the meanwhile, enjoy this riveting gameplay:
 
 ![minecraft parkour gif](./assets/minecraft-tas.gif)
 

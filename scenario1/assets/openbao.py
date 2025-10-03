@@ -4,7 +4,7 @@ import sys
 
 OPENBAO_URL = "http://127.0.0.1:8200" 
 MOUNT = "secret"
-SECRET_PATH = "foo"
+PATH = "foo"
 FIELD = "pswd"
 TOKEN = sys.argv[1]
 
