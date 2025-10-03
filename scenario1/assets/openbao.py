@@ -10,7 +10,7 @@ TOKEN = sys.argv[1]
 
 def get_secret():
     headers = {"X-Vault-Token": TOKEN}
-    url = f"{OPENBAO_URL}/v1/{MOUNT}/data/{SECRET_PATH}"
+    url = f"{OPENBAO_URL}/v1/{MOUNT}/data/{PATH}"
     resp = requests.get(url, headers=headers)
     resp.raise_for_status()
     data = resp.json()
