@@ -1,16 +1,16 @@
 # Storing Secrets Locally Using OpenBao
 ## Motivation
-In terms of DevSecOps, security must be managed by the team developing the product. It is therefore important to store secrets securily. By using OpenBao as a local docker container, a team can manage secrets safely and locally.
+In terms of DevSecOps, security must be managed by the team developing the product. It is therefore important to store secrets securely. By using OpenBao as a local docker container, a team can manage secrets safely and locally.
 
 ## Background
-This tutorial will mainly utilize OpenBao, which is a fork of HashiCrop Vault that provides a powerful secrets and encryption management server to store secrets such as passwords, encryption keys, and certificates. 
-OpenBao utilizes an intersting concept know as Shamir Secret Sharing which is a cryptographic algorithm that splits a secret into multiple parts, this means mutliple people holds the "unseal" key used to make OpenBao accessible. Unseal means that OpenBao is in a working state and secrets can be retreived. Shamir Secret Sharing would be interesting to explore, but that will not be the purpose of this tutorial. With this in mind, we will use dev mode where only one key is required. To communicate with the OpenBao server, HTTP request are sent through a UI, a CLI, or requests directly to the server which we will do in this tutorial.
+This tutorial will mainly utilize OpenBao, which is a fork of HashiCorp Vault that provides a powerful secrets and encryption management server to store secrets such as passwords, encryption keys, and certificates. 
+OpenBao utilizes an interesting concept known as Shamir Secret Sharing, which is a cryptographic algorithm that splits a secret into multiple parts. This means multiple people hold the "unseal" key used to make OpenBao accessible. Unseal means that OpenBao is in a working state and secrets can be retrieved. Shamir Secret Sharing would be interesting to explore, but that will not be the purpose of this tutorial. With this in mind, we will use dev mode, where only one key is required. To communicate with the OpenBao server, HTTP requests are sent through a UI, a CLI, or requests directly to the server which we will do in this tutorial.
 
 ![openbao](./assets/openbao.png)
 
 
 ## Tutorial Overview
-In this tutroial, we will first introduce an insecure example of using plaintext or hardcoded secrets in a Python program. This would show a quick solution, but it is not long time secure.
+In this tutorial, we will first introduce an insecure example of using plaintext or hardcoded secrets in a Python program. This would show a quick solution, but it is not long-term secure.
 
 Then, we continue with showing how these secrets can be exchanged with a secure solution that controls the storage of secrets, using OpenBao. Here, OpenBao will be run in a docker container, and commands will be sent to this container in order to communicate with it.
 
