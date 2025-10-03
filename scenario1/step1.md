@@ -1,6 +1,6 @@
-# An insecure solution Part 1 - Setting up MySQL
-## Setup Database
-To start, we need to setup a secure database. The command below creates a MySQL docker container secured by the username `root` and password `S3cret`.
+# An Insecure Solution Part 1 - MySQL Setup
+## Setting up a secure database
+To start, we need to setup a secure database. The command below creates a MySQL Docker container secured by the username `root` and password `S3cret`.
 ```plain
 sudo docker run -d --name demo-db -e MYSQL_ROOT_PASSWORD=S3cret -p 3306:3306 mysql:8; sleep 15
 ```{{exec}}
@@ -22,7 +22,7 @@ docker ps
 ```{{exec}}
 
 ## Importing database
-Now that we have a MySQL docker container running , we can import a pre-made database: 
+Now that we have a MySQL Docker container running , we can import a pre-made database: 
 ```plain
 sudo docker exec -i demo-db mysql -u root -pS3cret < db.sql
 ```{{exec}}
@@ -38,5 +38,7 @@ Verify the import with:
 ```plain
 sudo docker exec -i demo-db mysql -u root -pS3cret -e "SHOW DATABASES;"
 ```{{exec}}
+
+We should be able to see `db` in there.
 
 Great! Now we have a database with secured data!

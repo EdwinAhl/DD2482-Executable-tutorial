@@ -1,4 +1,4 @@
-# Storing secrets locally using OpenBao
+# Storing Secrets Locally Using OpenBao
 ## Motivation
 In terms of DevSecOps, security must be managed by the team developing the product. It is therefore important to store secrets securily. By using OpenBao as a local docker container, a team can manage secrets safely and locally.
 
@@ -23,11 +23,11 @@ Then, we continue with showing how these secrets can be exchanged with a secure 
           |
 +---------v------------+ : Setup database
 | An insecure solution | : Setup Python Virtual environment
-+----------------------+ : Connect to DB using python
++----------------------+ : Connect to DB using Python
           |
 +---------v------------+ : Setup OpenBao
 |  A secure solution   | : Store Secret in OpenBao
-+----------------------+ : Retrieve secret using python http request
++----------------------+ : Retrieve secret using Python HTTP request
           |
 +---------v------------+ : Summary
 |       Summary        | : Recap

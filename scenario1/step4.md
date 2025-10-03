@@ -1,8 +1,8 @@
-# A secure solution Part 2 - Using Python
+# A Secure Solution Part 2 - Using Python
 ## Storing the MySQL password in OpenBao
 Reminder: The "real" command that targets the running instace of OpenBao in the container comes after "sudo docker exec -it openbao"
 
-This will store the password as a key-value (kv) in a secret folder called "foo", with the key "pswd":
+Let´s start with the following command which will store the password as a key-value (kv) in a secret folder called "foo", with the key "pswd" and value "S3cret":
 ```bash
 sudo docker exec -it openbao bao kv put -mount=secret foo pswd=S3cret
 ```{{exec}}
@@ -42,7 +42,7 @@ You are almost there! The final step is to now create the OpenBao access token u
 ```plain
 TOKEN=$(sudo docker exec -i openbao bao token create -policy="python-program" -ttl=1h -explicit-max-ttl=24h | awk '/^token[[:space:]]/{print $2}')
 ```{{exec}}
-- `TOKEN=$(...) assigns a shell variable as the output from the command inside the paranthesis
+- `TOKEN=$(...)` assigns a shell variable as the output from the command inside the paranthesis
 - `token create` instructs `bao` to create a new token
 - `-policy="python-program"` assign the token the policy "python-program" (created before)
 - `-ttl=1h` set the token's Time To Live to 1 hour
@@ -70,7 +70,7 @@ def get_secret():
 
 Now we can verify this by running the command below and inputting the value for `token` from the previous commmand:
 ```plain
-python openbao.py
+python openbao.py "$TOKEN"
 ```{{exec}}
 
 We get the same result as before, but more secure!

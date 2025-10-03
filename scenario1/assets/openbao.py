@@ -1,11 +1,12 @@
 import mysql.connector
 import requests
+import sys
 
 OPENBAO_URL = "http://127.0.0.1:8200" 
 MOUNT = "secret"
 SECRET_PATH = "foo"
 FIELD = "pswd"
-TOKEN = input("Token: ")
+TOKEN = sys.argv[1]
 
 def get_secret():
     headers = {"X-Vault-Token": TOKEN}

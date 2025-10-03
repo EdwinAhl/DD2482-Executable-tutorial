@@ -1,6 +1,6 @@
-# An insecure solution Part 2 - Using Python
-## Setup Python Virtual Environment
-To run a python program that connects to the database and retrieves data, we first setup a python virtual envionment to make the rest of the setup easier.
+# An Insecure Solution Part 2 - Using Python
+## Setup a Python virtual environment
+To run a python program that connects to the database and retrieves data, we first setup a Python virtual envionment to make the rest of the setup easier.
 
 Install the environment:
 ```plain
