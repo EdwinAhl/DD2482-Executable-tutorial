@@ -11,3 +11,6 @@ To recap what we have done:
 - NEVER STORE PASSWORDS IN PLAINTEXT
 - Consider using a secret and encryption management tool like OpenBao or Vault for projects
 
+## Acknowledgements
+Special thanks to Emil and Samuel for their valuable feedback that improved this tutorial.
+
